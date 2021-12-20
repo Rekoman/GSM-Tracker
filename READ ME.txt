@@ -1,0 +1,21 @@
+- Make the connections as discussed and upload the code to your Arduino Nano board. 
+Insert the SIM card and make sure your network signal is established. 
+One way to do this by monitoring the LED on your GSM module, which should flash once in every 3 seconds.
+Now open the serial monitor and it should be working fine.
+
+- Now that we have our latitude and longitude value we just have to attach it to our Link
+ with a comma in-between to form the Link. The code for the same is given below.
+code: Serial.println(Latitude); Serial.println(Longitude);
+  Link = Link + Latitude + "," + Longitude;
+- We will use the prepare_message() function to trim the value of latitude and longitude.
+ As you can see in the below sample message
+Response: [+CIPGSMLOC: 0,75.802460,26.848892,2019/04/23,08:32:35]
+
+- Finally we can send the Link as SMS to a mobile number.
+Here I have hardcoded the mobile number with the command AT+CMGS="907923XXXX", 
+make sure you replace the command with your phone number.
+
+- You can simply call to your GSM SIM number from any number 
+and you will notice the call getting hanged up after first few rings 
+and you will get a message to number which you have entered in the program.
+ The text message will be contain the Google map link.

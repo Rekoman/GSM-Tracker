@@ -1,0 +1,19 @@
+- We have used the LM2596 Buck regulator IC to provide 4V to the SIM800 module from the input 12V. 
+The SIM800 module requires around 2A peak current when initialized and searching for network, 
+hence the power supply should be able to source that current, else the module will enter shutdown mode, 
+and hence the LM2596 IC is selected which can supply upto 3A.
+
+- The SIM800 GSM modem is commonly available as modem, 
+but we have used the bare IC package to reduce board space and cost. 
+Using the SIM800 modem is pretty much straight forward, 
+we simply have to power the IC though the VBAT and GND pins
+and then use the PWR KEY pin to enable the modem by pulling the pin down for 1 second.
+By default the pin is pulled high internally to VBAT through a resistor.
+
+- On the Microcontroller side we have the ATMEGA328P chip form AVR, 
+which is the one used in Arduino UNO/Nano, 
+but here the controller is embedded directly on the board to communicate with the SIM800 module. 
+Since the SIM800 module operates in 3.3V logic, 
+I decided to operate the ATmega328 chip 
+also with 3.3V itself since it also supports both 3.3V and 5V operating voltages.
+
